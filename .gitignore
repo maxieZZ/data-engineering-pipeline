@@ -9,7 +9,8 @@ venv.bak/
 
 *.pyc
 __pycache__/
-.DS_Store
+*.DS_Store
+**/.DS_Store
 
 # SCRIPT NOTES: asterisk (*) matches zero or more characters
 # [abc] matches any character inside the brackets (e.g a, b, or c)
