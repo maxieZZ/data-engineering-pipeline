@@ -1,4 +1,4 @@
-# Environments
+# ignore any virtual environments
 .env
 .venv
 env/
@@ -10,3 +10,9 @@ venv.bak/
 *.pyc
 __pycache__/
 .DS_Store
+
+# SCRIPT NOTES: asterisk (*) matches zero or more characters
+# [abc] matches any character inside the brackets (e.g a, b, or c)
+# question mark (?) matches a single character
+# brackets enclosing characters (e.g. [0-9]) match any character between them (e.g 0-9)
+# use two asterisks to match nested directories (e.g. a/**/z matches a/z, a/b/z, a/b/c/z, etc)
