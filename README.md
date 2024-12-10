@@ -24,8 +24,8 @@ Archive the collected data (to make accessible after pipeline runs).
 First, make sure MinIO (9000:9001) and PostgreSQL (5432) are set up (DBeaver can be used to access PostgreSQL and create database) and running in their respective docker containers. Next, set up jenkins which should run locally in a docker container on your desired port of choice (in my case port 8080) and then make sure that github credentials are set up on jenkins so that jenkins is able to access your github repo. Next, run ngrok locally on the SAME port of choice (command: ngrok http 8080) which creates a dynamic URL (i.e. a secure and public facing URL which you find under "Forwarding"). To enable github to use this tunnel created by ngrok, set up a webhook on your remote github repo which uses the dynamic url. REMEMBER: Copy and paste the forwarding url to the "Payload URL" field on Github BUT ALSO remember to add "/github-webhook/" to the end of that URL as well (otherwise the webhook won’t work properly). Once this has all been set up, you can test out the pipeline by triggering a Jenkins build via a local push to your remote repository. 
 
 # NOTE: This pipeline is still a work in progress and needs the following…
-Upload Jenkinsfile to GitHub and configure the pipeline to pull instructions from there (rather than writing in the Jenkins groovy UI)
-Figure out how to install python requirements.txt file in jenkins-docker image before performing testing and deployment (to do this, either update and rebuild docker image or run the jenkins job on a docker python node)
+* Upload Jenkinsfile to GitHub and configure the pipeline to pull instructions from there (rather than writing in the Jenkins groovy UI)
+* Figure out how to install python requirements.txt file in jenkins-docker image before performing testing and deployment (to do this, either update and rebuild docker image or run the jenkins job on a docker python node)
 
 This project was made possible by the following medium post: https://towardsdev.com/ci-cd-for-modern-data-engineering-e2e7d2d0a694 
 Thank you!:)
