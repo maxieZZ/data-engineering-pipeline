@@ -1,9 +1,9 @@
-## Simple CI/CD Data Engineering Pipeline
+# Simple CI/CD Data Engineering Pipeline
 
-# Purpose
+## Purpose
 When the ETL (Extract Load Transform) that a pipeline continuously performs on incoming data is critical to company operations, stopping the pipeline to perform required updates, fixes, or improvements is detrimental to the companies success. To make edits without stopping the pipeline, changes must first be implemented in parallel and deployed only after rigorously testing each component (including data ingestion, transformation, & storage). This concept, known as Continuous Integration and Continuous Deployment (CI/CD), is fundamental to successful pipeline operation and is what I will be exploring in this repository.
 
-# Pipeline Overview
+## Pipeline Overview
 To define a general ETL pipeline, one must begin with the data source which, in this case, will be a database I created with random values using PostgreSQL. After pulling the newest values from this database, there is often a transformation that takes place (e.g. organizing specific pieces of data into a tabular format and discarding the rest). Once the data is transformed, it can be saved and stored in a warehouse or lake of your choice (often in the cloud to preserve space). In order to ensure that this process is working, tests are often employed at each step to error check. For example, before transforming, we need to make sure that data was in fact successfully pulled from the source, otherwise an error should occur. The transformed data should also be checked to insure that it is transformed into the data format we are expecting. Once errors are checked, the pipeline should be triggered to run and the results should be archived somewhere accessible (e.g. data lake or warehouse). Each time changes are made and pushed to the remote repository master, an automated pipeline (jenkins) should be triggered to test the changed ETL pipeline before deploying. A visual depiction of this process is given in the image below.
 
 <img src="images/overview.png?raw=true"/>
