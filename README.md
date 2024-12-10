@@ -14,11 +14,11 @@ Now that the pipeline and testing procedures are in place, the next step is to r
 
 Finally, an open source automation server known as Jenkins (which should also be run in its own docker container) can be used to tie all these components of the pipeline together and facilitate the integration of new updates into the pipeline after performing the required testing. For example, in the case of the pipeline described above, Jenkins can be used to write an automated pipeline with 5 stages that triggers whenever a change in the GitHub code repository is made (via GitHub webhooks). These steps are outlined in the image above and listed below in more detail…
 
-Clone the repository where the code is stored (includes test_etl.py, etl.py, and requirements.txt)
-Install the required dependencies from requirements.txt (effectively creating the virtual environment needed to run the code)
-Run the tests from etl.py to make sure the code is effective
-Run the ETL pipeline to continue extracting, transforming, and loading data
-Archive the collected data (to make accessible after pipeline runs).
+* (1) Clone the repository where the code is stored (includes test_etl.py, etl.py, and requirements.txt)
+* (2) Install the required dependencies from requirements.txt (effectively creating the virtual environment needed to run the code)
+* (3) Run the tests from etl.py to make sure the code is effective
+* (4) Run the ETL pipeline to continue extracting, transforming, and loading data
+* (5) Archive the collected data (to make accessible after pipeline runs).
 
 
 First, make sure MinIO (9000:9001) and PostgreSQL (5432) are set up (DBeaver can be used to access PostgreSQL and create database) and running in their respective docker containers. Next, set up jenkins which should run locally in a docker container on your desired port of choice (in my case port 8080) and then make sure that github credentials are set up on jenkins so that jenkins is able to access your github repo. Next, run ngrok locally on the SAME port of choice (command: ngrok http 8080) which creates a dynamic URL (i.e. a secure and public facing URL which you find under "Forwarding"). To enable github to use this tunnel created by ngrok, set up a webhook on your remote github repo which uses the dynamic url. REMEMBER: Copy and paste the forwarding url to the "Payload URL" field on Github BUT ALSO remember to add "/github-webhook/" to the end of that URL as well (otherwise the webhook won’t work properly). Once this has all been set up, you can test out the pipeline by triggering a Jenkins build via a local push to your remote repository. 
